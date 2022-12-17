@@ -1,0 +1,114 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Submission" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/black_500</item>
+        <item name="colorPrimaryVariant">@color/black_900</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/silver</item>
+        <item name="colorSecondaryVariant">@color/black_900</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="fontFamily">@font/mulireg</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/mulireg</item>
+    </style>
+
+    <style name="AppBarTheme">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:textColorHint">@color/silver</item>
+    </style>
+
+    <style name="AppBarStyle" parent="Theme.Submission">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:elevation">4dp</item>
+        <item name="android:background">?attr/colorPrimary</item>
+    </style>
+
+    <style name="AppBarTransparent" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+    </style>
+
+    <style name="BaseHeadline" parent="Theme.Submission">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0.0125</item>
+        <item name="fontFamily">@font/segoeuib</item>
+    </style>
+
+    <style name="Headline1" parent="BaseHeadline">
+        <item name="android:textSize">40sp</item>
+    </style>
+
+    <style name="Headline2" parent="BaseHeadline">
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="Headline3" parent="BaseHeadline">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Headline4" parent="BaseHeadline">
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0.0</item>
+    </style>
+
+    <style name="Headline5" parent="BaseHeadline">
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.0</item>
+    </style>
+
+    <style name="BaseTitle" parent="Theme.Submission">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0.0125</item>
+    </style>
+
+    <style name="Title" parent="BaseTitle">
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="Title2" parent="BaseTitle">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Title3" parent="BaseTitle">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Subtitle" parent="Theme.Submission">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0.009375</item>
+    </style>
+
+    <style name="Subtitle2" parent="Theme.Submission">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.004</item>
+    </style>
+
+    <style name="Subtitle3" parent="Theme.Submission">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="ButtonGeneral">
+        <item name="android:backgroundTint">?attr/colorPrimary</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+    </style>
+</resources>

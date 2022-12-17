@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Gitagram</string>
+    <string name="app_version">App Version</string>
+    <string name="username">Username</string>
+    <string name="user_type">User Type</string>
+    <string name="github_url">Github Url</string>
+    <string name="user_not_found">Oops!\nUser not found.</string>
+    <string name="initial_home">Let\'s find your Developers!</string>
+    <string name="list_developer">List Developer</string>
+    <string name="no_fav_user">You dont have \nFavorite Developer!</string>
+    <string name="title">Title</string>
+    <string name="_00">00</string>
+    <string name="following">Following</string>
+    <string name="repository">Repository</string>
+    <string name="followers">Followers</string>
+    <string name="full_name">Full Name</string>
+    <string name="biography">Biography</string>
+    <string name="company">Company</string>
+    <string name="location">Location</string>
+    <string name="error">Oops!\nSomething went wrong!</string>
+    <string name="favorite_list">Favorite List</string>
+    <string name="search_hint">Search User…</string>
+    <string name="search_developer">Search Developer</string>
+
+    <string name="menu_1">Menu 1</string>
+    <string name="menu_2">Menu 2</string>
+</resources>
