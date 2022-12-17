@@ -19,7 +19,7 @@ android {
         versionCode 1
         versionName "1.0.0"
         buildConfigField "String", "BASE_URL", '"https://api.github.com"'
-        buildConfigField "String", "ACCESS_TOKEN", '"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"'
+        buildConfigField "String", "ACCESS_TOKEN", '"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"'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -30,7 +30,7 @@ android {
             debuggable true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", '"https://api.github.com"'
-            buildConfigField "String", "ACCESS_TOKEN", '"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"'
+            buildConfigField "String", "ACCESS_TOKEN", '"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"'
         }
 
         release {
@@ -39,7 +39,7 @@ android {
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", '"https://api.github.com"'
-            buildConfigField "String", "ACCESS_TOKEN", '"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"'
+            buildConfigField "String", "ACCESS_TOKEN", '"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"'
         }
 
         android.applicationVariants.all { variant ->
