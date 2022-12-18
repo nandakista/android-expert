@@ -8,6 +8,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.dicoding.expert.MyApplication
 import com.dicoding.expert.R
 import com.dicoding.expert.core.utils.Tools
 import com.dicoding.expert.core.utils.ViewModelFactory
@@ -15,22 +16,25 @@ import com.dicoding.expert.core.utils.parcelable
 import com.dicoding.expert.data.sources.Resource
 import com.dicoding.expert.databinding.ActivityDetailUserBinding
 import com.dicoding.expert.domain.entities.User
+import javax.inject.Inject
 
 class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityDetailUserBinding
 
-    private lateinit var factory: ViewModelFactory
+    @Inject
+    lateinit var factory: ViewModelFactory
+
     private val viewModel: DetailUserViewModel by viewModels { factory }
     private lateinit var user: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityDetailUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
         user = intent.parcelable(EXTRA_USER)!!
         binding.tvTitle.text = user.username
         supportActionBar?.elevation = 0f
-        factory = ViewModelFactory.getInstance(this@DetailUserActivity)
         binding.menuAddFav.setOnClickListener(this)
         binding.menuRemoveFav.setOnClickListener(this)
         binding.btnBackDetail.setOnClickListener(this)

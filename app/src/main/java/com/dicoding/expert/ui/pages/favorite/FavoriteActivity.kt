@@ -7,25 +7,28 @@ import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dicoding.expert.MyApplication
 import com.dicoding.expert.core.utils.ViewModelFactory
 import com.dicoding.expert.databinding.ActivityFavoriteBinding
 import com.dicoding.expert.ui.adapters.UsersAdapter
+import javax.inject.Inject
 
 class FavoriteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFavoriteBinding
 
-    private lateinit var factory: ViewModelFactory
+    @Inject
+    lateinit var factory: ViewModelFactory
+
     private val viewModel: FavoriteViewModel by viewModels { factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityFavoriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.appbarFav)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         actionBar?.setDisplayHomeAsUpEnabled(true)
-
-        factory = ViewModelFactory.getInstance(this@FavoriteActivity)
         val adapter = UsersAdapter()
         binding.rvFavUsers.adapter = adapter
         viewModel.getFavUser.observe(this) {

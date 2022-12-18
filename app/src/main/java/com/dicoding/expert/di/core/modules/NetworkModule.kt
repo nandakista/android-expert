@@ -1,14 +1,20 @@
-package com.dicoding.expert.core.network
+package com.dicoding.expert.di.core.modules
 
 import com.dicoding.expert.BuildConfig
+import com.dicoding.expert.core.network.ApiService
+import dagger.Module
+import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object ApiConfig {
-    private fun provideOkHttpClient(): OkHttpClient {
+@Module
+class NetworkModule {
+
+    @Provides
+    fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .connectTimeout(120, TimeUnit.SECONDS)
@@ -16,11 +22,12 @@ object ApiConfig {
             .build()
     }
 
-    fun provideApiService(): ApiService {
+    @Provides
+    fun provideApiServices(client: OkHttpClient): ApiService {
         val retrofit = Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .client(provideOkHttpClient())
+            .client(client)
             .build()
         return retrofit.create(ApiService::class.java)
     }

@@ -7,16 +7,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import java.lang.Exception
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class LocalDataSource private constructor(private val userDao: UserDao) {
-    companion object {
-        @Volatile
-        private var instance: LocalDataSource? = null
-        fun getInstance(userDao: UserDao): LocalDataSource =
-            instance ?: synchronized(this) {
-                instance ?: LocalDataSource(userDao)
-            }.also { instance = it }
-    }
+@Singleton
+class LocalDataSource @Inject constructor(private val userDao: UserDao) {
 
     fun getFavUser(): Flow<List<UserEntity>> {
         return userDao.getAll()

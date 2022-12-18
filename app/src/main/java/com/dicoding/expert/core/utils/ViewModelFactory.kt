@@ -1,28 +1,19 @@
 package com.dicoding.expert.core.utils
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.dicoding.expert.di.Injection
+import com.dicoding.expert.di.app.AppScope
 import com.dicoding.expert.domain.usecases.UserUseCase
 import com.dicoding.expert.ui.pages.detail.DetailUserViewModel
 import com.dicoding.expert.ui.pages.favorite.FavoriteViewModel
 import com.dicoding.expert.ui.pages.home.HomeViewModel
+import kotlinx.coroutines.FlowPreview
+import javax.inject.Inject
 
-class ViewModelFactory private constructor(private val userUseCase: UserUseCase) :
+@OptIn(FlowPreview::class)
+@AppScope
+class ViewModelFactory @Inject constructor(private val userUseCase: UserUseCase) :
     ViewModelProvider.NewInstanceFactory() {
-
-    companion object {
-        @Volatile
-        private var instance: ViewModelFactory? = null
-
-        fun getInstance(context: Context): ViewModelFactory =
-            instance ?: synchronized(this) {
-                instance ?: ViewModelFactory(
-                    Injection.provideUserUseCase(context)
-                )
-            }
-    }
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T =

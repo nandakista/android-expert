@@ -4,8 +4,9 @@ import com.dicoding.expert.data.sources.Resource
 import com.dicoding.expert.domain.entities.User
 import com.dicoding.expert.domain.repositories.IUserRepository
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class UserInteractor(private val userRepository: IUserRepository): UserUseCase {
+class UserInteractor @Inject constructor(private val userRepository: IUserRepository): UserUseCase {
     override fun getAllUser(): Flow<Resource<List<User>>> {
         return userRepository.getAllUser()
     }

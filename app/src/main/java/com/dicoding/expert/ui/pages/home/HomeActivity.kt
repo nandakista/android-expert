@@ -1,3 +1,4 @@
+
 package com.dicoding.expert.ui.pages.home
 
 import android.app.SearchManager
@@ -14,6 +15,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dicoding.expert.MyApplication
 import com.dicoding.expert.R
 import com.dicoding.expert.core.utils.AppConst
 import com.dicoding.expert.core.utils.Tools
@@ -22,26 +24,25 @@ import com.dicoding.expert.data.sources.Resource
 import com.dicoding.expert.databinding.ActivityHomeBinding
 import com.dicoding.expert.ui.adapters.UsersAdapter
 import com.dicoding.expert.ui.pages.favorite.FavoriteActivity
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.launch
 import java.lang.StringBuilder
+import javax.inject.Inject
 
-@ExperimentalCoroutinesApi
-@FlowPreview
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     var querySearch: String? = null
 
-    private lateinit var factory: ViewModelFactory
+    @Inject
+    lateinit var factory: ViewModelFactory
+
     private val viewModel: HomeViewModel by viewModels { factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.appbarHome)
-        factory = ViewModelFactory.getInstance(this@HomeActivity)
         onSwipeRefresh()
         if (savedInstanceState != null) {
             querySearch = savedInstanceState.getString(QUERY_SEARCH)

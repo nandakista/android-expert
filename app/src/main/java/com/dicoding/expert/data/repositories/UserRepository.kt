@@ -8,22 +8,14 @@ import com.dicoding.expert.data.sources.server.RemoteDataSource
 import com.dicoding.expert.domain.entities.User
 import com.dicoding.expert.domain.repositories.IUserRepository
 import kotlinx.coroutines.flow.*
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class UserRepository private constructor(
+@Singleton
+class UserRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
 ) : IUserRepository {
-    companion object {
-        @Volatile
-        private var instance: UserRepository? = null
-        fun getInstance(
-            remoteDataData: RemoteDataSource,
-            localDataData: LocalDataSource
-        ): UserRepository =
-            instance ?: synchronized(this) {
-                instance ?: UserRepository(remoteDataData, localDataData)
-            }.also { instance = it }
-    }
 
     override fun getAllUser(): Flow<Resource<List<User>>> {
         return flow {

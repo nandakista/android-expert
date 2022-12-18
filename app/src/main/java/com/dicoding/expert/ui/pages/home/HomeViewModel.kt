@@ -6,13 +6,13 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 
-@FlowPreview
-@ExperimentalCoroutinesApi
 class HomeViewModel(private val userUseCase: UserUseCase) : ViewModel() {
     val getAllUser by lazy {
         userUseCase.getAllUser().asLiveData()
     }
     val queryChannel = MutableStateFlow("")
+
+    @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
     val searchResult = queryChannel
         .debounce(1000).distinctUntilChanged()
         .filter { it.trim().isNotEmpty() }
