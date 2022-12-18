@@ -1,4 +1,4 @@
-package com.dicoding.expert.ui.pages.search
+package com.dicoding.expert.ui.pages.home
 
 import android.app.SearchManager
 import android.content.Context
@@ -19,37 +19,78 @@ import com.dicoding.expert.core.utils.AppConst
 import com.dicoding.expert.core.utils.Tools
 import com.dicoding.expert.core.utils.ViewModelFactory
 import com.dicoding.expert.data.sources.Resource
-import com.dicoding.expert.databinding.ActivitySearchBinding
+import com.dicoding.expert.databinding.ActivityHomeBinding
 import com.dicoding.expert.ui.adapters.UsersAdapter
 import com.dicoding.expert.ui.pages.favorite.FavoriteActivity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.launch
+import java.lang.StringBuilder
 
 @ExperimentalCoroutinesApi
 @FlowPreview
-class SearchActivity : AppCompatActivity() {
-    private lateinit var binding: ActivitySearchBinding
+class HomeActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityHomeBinding
     var querySearch: String? = null
 
     private lateinit var factory: ViewModelFactory
-    private val viewModel: SearchViewModel by viewModels { factory }
+    private val viewModel: HomeViewModel by viewModels { factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySearchBinding.inflate(layoutInflater)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.appbarHome)
-        factory = ViewModelFactory.getInstance(this@SearchActivity)
+        factory = ViewModelFactory.getInstance(this@HomeActivity)
         onSwipeRefresh()
-        if(savedInstanceState != null) {
+        if (savedInstanceState != null) {
             querySearch = savedInstanceState.getString(QUERY_SEARCH)
         }
+        getAllUser()
     }
 
     override fun onResume() {
         super.onResume()
         querySearch?.let { searchUser() }
+    }
+
+    private fun getAllUser() {
+        val adapter = UsersAdapter()
+        binding.rvUsers.adapter = adapter
+        viewModel.getAllUser.observe(this) {
+            when (it) {
+                is Resource.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.userEmpty.visibility = View.GONE
+                    binding.userError.visibility = View.GONE
+                    binding.rvUsers.visibility = View.GONE
+                }
+                is Resource.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    binding.userEmpty.visibility = View.GONE
+                    binding.userError.visibility = View.GONE
+                    adapter.submitList(it.data)
+                    binding.rvUsers.apply {
+                        visibility = View.VISIBLE
+                        setHasFixedSize(true)
+                        layoutManager = LinearLayoutManager(this@HomeActivity)
+                    }
+                }
+                is Resource.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    binding.userEmpty.visibility = View.GONE
+                    binding.rvUsers.visibility = View.GONE
+                    binding.userError.visibility = View.VISIBLE
+                    if (it.message == AppConst.userNotFound) {
+                        binding.tvErrorMsg.text = StringBuilder().append(AppConst.userNotFound)
+                        Tools.toast(this, it.message)
+                    } else {
+                        binding.tvErrorMsg.text = StringBuilder().append(it.message)
+                        Tools.toast(this, "Error : ${it.message}")
+                    }
+                }
+            }
+        }
     }
 
     private fun searchUser() {
@@ -61,28 +102,30 @@ class SearchActivity : AppCompatActivity() {
                     is Resource.Loading -> {
                         binding.progressBar.visibility = View.VISIBLE
                         binding.userEmpty.visibility = View.GONE
-                        binding.userNotFound.visibility = View.GONE
+                        binding.userError.visibility = View.GONE
                         binding.rvUsers.visibility = View.GONE
                     }
                     is Resource.Success -> {
                         binding.progressBar.visibility = View.GONE
                         binding.userEmpty.visibility = View.GONE
-                        binding.userNotFound.visibility = View.GONE
+                        binding.userError.visibility = View.GONE
                         adapter.submitList(it.data)
                         binding.rvUsers.apply {
                             visibility = View.VISIBLE
                             setHasFixedSize(true)
-                            layoutManager = LinearLayoutManager(this@SearchActivity)
+                            layoutManager = LinearLayoutManager(this@HomeActivity)
                         }
                     }
                     is Resource.Error -> {
                         binding.progressBar.visibility = View.GONE
                         binding.userEmpty.visibility = View.GONE
                         binding.rvUsers.visibility = View.GONE
-                        binding.userNotFound.visibility = View.VISIBLE
+                        binding.userError.visibility = View.VISIBLE
                         if (it.message == AppConst.userNotFound) {
+                            binding.tvErrorMsg.text = StringBuilder().append(AppConst.userNotFound)
                             Tools.toast(this, it.message)
                         } else {
+                            binding.tvErrorMsg.text = StringBuilder().append(it.message)
                             Tools.toast(this, "Error : ${it.message}")
                         }
                     }
@@ -99,7 +142,10 @@ class SearchActivity : AppCompatActivity() {
                     searchUser()
                 }
             }
-            Handler(Looper.getMainLooper()).postDelayed({ binding.srHome.isRefreshing = false }, 500)
+            Handler(Looper.getMainLooper()).postDelayed({
+                    binding.srHome.isRefreshing = false
+                }, 500
+            )
         }
     }
 
@@ -110,6 +156,7 @@ class SearchActivity : AppCompatActivity() {
         val searchView = menu.findItem(R.id.search_icon).actionView as SearchView
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         searchView.queryHint = resources.getString(R.string.search_hint)
+        searchView.setQuery(querySearch, true)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 searchView.clearFocus()
@@ -124,7 +171,7 @@ class SearchActivity : AppCompatActivity() {
                     viewModel.queryChannel.value = query
                     searchUser()
                 }
-                return false
+                return true
             }
         })
         return super.onCreateOptionsMenu(menu)
@@ -138,7 +185,7 @@ class SearchActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.fav_icon -> {
-                startActivity(Intent(this@SearchActivity, FavoriteActivity::class.java))
+                startActivity(Intent(this@HomeActivity, FavoriteActivity::class.java))
                 true
             }
             else -> true

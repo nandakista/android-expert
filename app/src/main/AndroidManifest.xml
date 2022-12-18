@@ -18,7 +18,7 @@
             android:name=".ui.pages.detail.DetailUserActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.pages.search.SearchActivity"
+            android:name=".ui.pages.home.HomeActivity"
             android:exported="false" />
         <activity
             android:name=".ui.pages.splash.SplashActivity"

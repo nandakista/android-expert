@@ -7,7 +7,7 @@ import com.dicoding.expert.di.Injection
 import com.dicoding.expert.domain.usecases.UserUseCase
 import com.dicoding.expert.ui.pages.detail.DetailUserViewModel
 import com.dicoding.expert.ui.pages.favorite.FavoriteViewModel
-import com.dicoding.expert.ui.pages.search.SearchViewModel
+import com.dicoding.expert.ui.pages.home.HomeViewModel
 
 class ViewModelFactory private constructor(private val userUseCase: UserUseCase) :
     ViewModelProvider.NewInstanceFactory() {
@@ -27,8 +27,8 @@ class ViewModelFactory private constructor(private val userUseCase: UserUseCase)
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T =
         when {
-            modelClass.isAssignableFrom(SearchViewModel::class.java) -> {
-                SearchViewModel(userUseCase) as T
+            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
+                HomeViewModel(userUseCase) as T
             }
             modelClass.isAssignableFrom(FavoriteViewModel::class.java) -> {
                 FavoriteViewModel(userUseCase) as T

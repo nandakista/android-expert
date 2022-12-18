@@ -1,4 +1,4 @@
-package com.dicoding.expert.ui.pages.search
+package com.dicoding.expert.ui.pages.home
 
 import androidx.lifecycle.*
 import com.dicoding.expert.domain.usecases.UserUseCase
@@ -8,7 +8,10 @@ import kotlinx.coroutines.flow.*
 
 @FlowPreview
 @ExperimentalCoroutinesApi
-class SearchViewModel(private val userUseCase: UserUseCase) : ViewModel() {
+class HomeViewModel(private val userUseCase: UserUseCase) : ViewModel() {
+    val getAllUser by lazy {
+        userUseCase.getAllUser().asLiveData()
+    }
     val queryChannel = MutableStateFlow("")
     val searchResult = queryChannel
         .debounce(1000).distinctUntilChanged()

@@ -6,7 +6,7 @@ import com.dicoding.expert.data.models.UserResponse
 import retrofit2.http.*
 
 interface ApiService {
-    @GET("users/")
+    @GET("users")
     @Headers("Authorization: token ${BuildConfig.ACCESS_TOKEN}")
     suspend fun getAllUser(): List<UserResponse>
 

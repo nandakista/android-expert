@@ -9,7 +9,7 @@ import android.os.Looper
 import com.dicoding.expert.BuildConfig
 import com.dicoding.expert.core.utils.AppConst
 import com.dicoding.expert.databinding.ActivitySplashBinding
-import com.dicoding.expert.ui.pages.search.SearchActivity
+import com.dicoding.expert.ui.pages.home.HomeActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -20,7 +20,7 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.tvSplashVersion.text = BuildConfig.VERSION_NAME
-        direct(SearchActivity::class.java)
+        direct(HomeActivity::class.java)
     }
 
     private fun direct(cls: Class<*>) {

@@ -4,19 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.pages.search.SearchActivity">
-
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    tools:context=".ui.pages.home.HomeActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/appbar_home"
         style="@style/AppBarStyle"
         android:theme="@style/AppBarTheme"
-        app:title="@string/search_developer"
+        app:title="@string/list_developer"
         app:titleTextAppearance="@style/Headline3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +81,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/user_not_found"
+        android:id="@+id/user_error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="invisible"
@@ -107,6 +101,7 @@
             tools:ignore="ContentDescription" />
 @
         <TextView
+            android:id="@+id/tv_error_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
