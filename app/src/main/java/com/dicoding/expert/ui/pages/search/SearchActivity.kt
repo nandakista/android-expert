@@ -12,6 +12,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.expert.R
 import com.dicoding.expert.core.utils.AppConst
@@ -21,7 +22,12 @@ import com.dicoding.expert.data.sources.Resource
 import com.dicoding.expert.databinding.ActivitySearchBinding
 import com.dicoding.expert.ui.adapters.UsersAdapter
 import com.dicoding.expert.ui.pages.favorite.FavoriteActivity
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.launch
 
+@ExperimentalCoroutinesApi
+@FlowPreview
 class SearchActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchBinding
     var querySearch: String? = null
@@ -43,40 +49,42 @@ class SearchActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        querySearch?.let { searchUser(it) }
+        querySearch?.let { searchUser() }
     }
 
-    private fun searchUser(query: String) {
+    private fun searchUser() {
         val adapter = UsersAdapter()
         binding.rvUsers.adapter = adapter
-        viewModel.searchUser(query).observe(this) {
-            when (it) {
-                is Resource.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                    binding.userEmpty.visibility = View.GONE
-                    binding.userNotFound.visibility = View.GONE
-                    binding.rvUsers.visibility = View.GONE
-                }
-                is Resource.Success -> {
-                    binding.progressBar.visibility = View.GONE
-                    binding.userEmpty.visibility = View.GONE
-                    binding.userNotFound.visibility = View.GONE
-                    adapter.submitList(it.data)
-                    binding.rvUsers.apply {
-                        visibility = View.VISIBLE
-                        setHasFixedSize(true)
-                        layoutManager = LinearLayoutManager(this@SearchActivity)
+        viewModel.searchResult.observe(this) { data ->
+            data.observe(this) {
+                when (it) {
+                    is Resource.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                        binding.userEmpty.visibility = View.GONE
+                        binding.userNotFound.visibility = View.GONE
+                        binding.rvUsers.visibility = View.GONE
                     }
-                }
-                is Resource.Error -> {
-                    binding.progressBar.visibility = View.GONE
-                    binding.userEmpty.visibility = View.GONE
-                    binding.rvUsers.visibility = View.GONE
-                    binding.userNotFound.visibility = View.VISIBLE
-                    if (it.message == AppConst.userNotFound) {
-                        Tools.toast(this, it.message)
-                    } else {
-                        Tools.toast(this, "Error : ${it.message}")
+                    is Resource.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        binding.userEmpty.visibility = View.GONE
+                        binding.userNotFound.visibility = View.GONE
+                        adapter.submitList(it.data)
+                        binding.rvUsers.apply {
+                            visibility = View.VISIBLE
+                            setHasFixedSize(true)
+                            layoutManager = LinearLayoutManager(this@SearchActivity)
+                        }
+                    }
+                    is Resource.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        binding.userEmpty.visibility = View.GONE
+                        binding.rvUsers.visibility = View.GONE
+                        binding.userNotFound.visibility = View.VISIBLE
+                        if (it.message == AppConst.userNotFound) {
+                            Tools.toast(this, it.message)
+                        } else {
+                            Tools.toast(this, "Error : ${it.message}")
+                        }
                     }
                 }
             }
@@ -85,7 +93,12 @@ class SearchActivity : AppCompatActivity() {
 
     private fun onSwipeRefresh() {
         binding.srHome.setOnRefreshListener {
-            querySearch?.let { searchUser(it) }
+            querySearch?.let {
+                lifecycleScope.launch {
+                    viewModel.queryChannel.value = it
+                    searchUser()
+                }
+            }
             Handler(Looper.getMainLooper()).postDelayed({ binding.srHome.isRefreshing = false }, 500)
         }
     }
@@ -101,11 +114,16 @@ class SearchActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(query: String): Boolean {
                 searchView.clearFocus()
                 querySearch = query
-                searchUser(query)
+                searchUser()
                 return true
             }
 
-            override fun onQueryTextChange(newText: String): Boolean {
+            override fun onQueryTextChange(query: String): Boolean {
+                querySearch = query
+                lifecycleScope.launch {
+                    viewModel.queryChannel.value = query
+                    searchUser()
+                }
                 return false
             }
         })
