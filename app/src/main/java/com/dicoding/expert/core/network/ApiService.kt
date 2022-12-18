@@ -1,23 +1,20 @@
 package com.dicoding.expert.core.network
 
 import com.dicoding.expert.BuildConfig
-import com.dicoding.expert.data.models.Repo
 import com.dicoding.expert.data.models.SearchResponse
-import com.dicoding.expert.data.models.User
+import com.dicoding.expert.data.models.UserResponse
 import retrofit2.http.*
 
-interface NetworkServices {
+interface ApiService {
     @GET("users/")
     @Headers("Authorization: token ${BuildConfig.ACCESS_TOKEN}")
-    suspend fun getListUser(
-        @Path("username") username: String,
-    ): List<User>
+    suspend fun getAllUser(): List<UserResponse>
 
     @GET("users/{username}")
     @Headers("Authorization: token ${BuildConfig.ACCESS_TOKEN}")
     suspend fun getDetailUser(
         @Path("username") username: String,
-    ): User
+    ): UserResponse
 
     @GET("search/users")
     @Headers("Authorization: token ${BuildConfig.ACCESS_TOKEN}")

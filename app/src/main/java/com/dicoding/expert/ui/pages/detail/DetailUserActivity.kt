@@ -2,26 +2,24 @@ package com.dicoding.expert.ui.pages.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.expert.R
-import com.dicoding.expert.core.Tools
-import com.dicoding.expert.core.database.entity.UserEntity
-import com.dicoding.expert.core.parcelable
-import com.dicoding.expert.data.models.User
-import com.dicoding.expert.data.models.base.ApiResult
+import com.dicoding.expert.core.utils.Tools
+import com.dicoding.expert.core.utils.ViewModelFactory
+import com.dicoding.expert.core.utils.parcelable
+import com.dicoding.expert.data.sources.Resource
 import com.dicoding.expert.databinding.ActivityDetailUserBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.dicoding.expert.domain.entities.User
 
 class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityDetailUserBinding
 
-    private lateinit var factory: DetailViewModelFactory
+    private lateinit var factory: ViewModelFactory
     private val viewModel: DetailUserViewModel by viewModels { factory }
     private lateinit var user: User
 
@@ -32,7 +30,7 @@ class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
         user = intent.parcelable(EXTRA_USER)!!
         binding.tvTitle.text = user.username
         supportActionBar?.elevation = 0f
-        factory = DetailViewModelFactory.getInstance(this@DetailUserActivity)
+        factory = ViewModelFactory.getInstance(this@DetailUserActivity)
         binding.menuAddFav.setOnClickListener(this)
         binding.menuRemoveFav.setOnClickListener(this)
         binding.btnBackDetail.setOnClickListener(this)
@@ -54,18 +52,19 @@ class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun getDetailUser() {
-        viewModel.getDetailUser(user.username).observe(this) {
+        Log.d("Detail Activity", "User ${user.username}")
+        viewModel.getDetailUser(user.username.toString()).observe(this) {
             when (it) {
-                is ApiResult.Loading -> {
+                is Resource.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
                 }
-                is ApiResult.Error -> {
+                is Resource.Error -> {
                     binding.progressBar.visibility = View.GONE
                     binding.somethingWrong.visibility = View.VISIBLE
                 }
-                is ApiResult.Success -> {
+                is Resource.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    user = it.data
+                    user = it.data!!
                     setProfile(user)
                 }
             }
@@ -73,8 +72,8 @@ class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun checkUserExist() {
-        CoroutineScope(Dispatchers.IO).launch {
-            if (viewModel.hasAdded(user.userId!!)) {
+        viewModel.hasAdded(user.id!!).observe(this) {
+            if (it) {
                 binding.menuAddFav.visibility = View.GONE
                 binding.menuRemoveFav.visibility = View.VISIBLE
             } else {
@@ -108,30 +107,24 @@ class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
                 finish()
             }
             binding.menuAddFav -> {
-                viewModel.addFavUser(
-                    user = UserEntity(
-                        id = user.userId,
-                        username = user.username,
-                        name = user.name,
-                        gitUrl = user.gitUrl,
-                        location = user.location,
-                        company = user.company,
-                        avatarUrl = user.avatarUrl,
-                        userType = user.userType
+                viewModel.setFavorite(user).observe(this) {
+                    binding.menuAddFav.visibility = View.GONE
+                    binding.menuRemoveFav.visibility = View.VISIBLE
+                    Tools.toast(
+                        this@DetailUserActivity,
+                        "${user.username} has been added to Favorite."
                     )
-                )
-                binding.menuAddFav.visibility = View.GONE
-                binding.menuRemoveFav.visibility = View.VISIBLE
-                Tools.toast(
-                    this@DetailUserActivity,
-                    "${user.username} has been added to Favorite Developer."
-                )
+                }
             }
             binding.menuRemoveFav -> {
-                viewModel.deletedFavUser(user.userId!!)
-                binding.menuRemoveFav.visibility = View.GONE
-                binding.menuAddFav.visibility = View.VISIBLE
-                Tools.toast(this, "${user.username} has been remove from Favorite Developer.")
+                viewModel.deletedFavUser(user.id!!).observe(this) {
+                    binding.menuRemoveFav.visibility = View.GONE
+                    binding.menuAddFav.visibility = View.VISIBLE
+                    Tools.toast(
+                        this@DetailUserActivity,
+                        "${user.username} has been remove from Favorite."
+                    )
+                }
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.dicoding.expert.core
+package com.dicoding.expert.core.utils
 
 import android.content.Context
 import android.content.Intent

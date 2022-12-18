@@ -1,11 +1,8 @@
 package com.dicoding.expert.data.models
 
 import android.os.Parcelable
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
-import java.io.Serializable
 
 data class SearchResponse(
     @SerializedName("total_count")
@@ -15,13 +12,13 @@ data class SearchResponse(
     var incompleteResult: Boolean,
 
     @SerializedName("items")
-    var data : List<User>,
+    var data: List<UserResponse>,
 )
 
 @Parcelize
-data class User(
+data class UserResponse(
     @SerializedName("id")
-    var userId: Int? = null,
+    var id: Int,
 
     @SerializedName("login")
     var username: String,

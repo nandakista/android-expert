@@ -14,9 +14,10 @@ import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.expert.R
-import com.dicoding.expert.core.AppConst
-import com.dicoding.expert.core.Tools
-import com.dicoding.expert.data.models.base.ApiResult
+import com.dicoding.expert.core.utils.AppConst
+import com.dicoding.expert.core.utils.Tools
+import com.dicoding.expert.core.utils.ViewModelFactory
+import com.dicoding.expert.data.sources.Resource
 import com.dicoding.expert.databinding.ActivitySearchBinding
 import com.dicoding.expert.ui.adapters.UsersAdapter
 import com.dicoding.expert.ui.pages.favorite.FavoriteActivity
@@ -25,11 +26,15 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchBinding
     var querySearch: String? = null
 
+    private lateinit var factory: ViewModelFactory
+    private val viewModel: SearchViewModel by viewModels { factory }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.appbarHome)
+        factory = ViewModelFactory.getInstance(this@SearchActivity)
         onSwipeRefresh()
         if(savedInstanceState != null) {
             querySearch = savedInstanceState.getString(QUERY_SEARCH)
@@ -42,19 +47,17 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun searchUser(query: String) {
-        val factory: SearchViewModelFactory = SearchViewModelFactory.getInstance()
-        val viewModel: SearchViewModel by viewModels { factory }
         val adapter = UsersAdapter()
         binding.rvUsers.adapter = adapter
         viewModel.searchUser(query).observe(this) {
             when (it) {
-                is ApiResult.Loading -> {
+                is Resource.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
                     binding.userEmpty.visibility = View.GONE
                     binding.userNotFound.visibility = View.GONE
                     binding.rvUsers.visibility = View.GONE
                 }
-                is ApiResult.Success -> {
+                is Resource.Success -> {
                     binding.progressBar.visibility = View.GONE
                     binding.userEmpty.visibility = View.GONE
                     binding.userNotFound.visibility = View.GONE
@@ -65,15 +68,15 @@ class SearchActivity : AppCompatActivity() {
                         layoutManager = LinearLayoutManager(this@SearchActivity)
                     }
                 }
-                is ApiResult.Error -> {
+                is Resource.Error -> {
                     binding.progressBar.visibility = View.GONE
                     binding.userEmpty.visibility = View.GONE
                     binding.rvUsers.visibility = View.GONE
                     binding.userNotFound.visibility = View.VISIBLE
-                    if (it.error == AppConst.userNotFound) {
-                        Tools.toast(this, it.error)
+                    if (it.message == AppConst.userNotFound) {
+                        Tools.toast(this, it.message)
                     } else {
-                        Tools.toast(this, "Error : ${it.error}")
+                        Tools.toast(this, "Error : ${it.message}")
                     }
                 }
             }

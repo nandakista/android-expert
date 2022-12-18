@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import com.dicoding.expert.BuildConfig
-import com.dicoding.expert.core.AppConst
+import com.dicoding.expert.core.utils.AppConst
 import com.dicoding.expert.databinding.ActivitySplashBinding
 import com.dicoding.expert.ui.pages.search.SearchActivity
 

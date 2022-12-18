@@ -25,9 +25,24 @@ data class UserEntity(
     @field:ColumnInfo(name = "company")
     var company: String?,
 
-    @field:ColumnInfo(name = "avatarUrl")
+    @field:ColumnInfo(name = "avatar_url")
     var avatarUrl: String?,
 
     @field:ColumnInfo(name = "user_type")
     var userType: String?,
+
+    @field:ColumnInfo(name = "biodata")
+    var biodata: String?,
+
+    @field:ColumnInfo(name = "repo_url")
+    var repoUrl: String?,
+
+    @field:ColumnInfo(name = "repository")
+    var repository: Int? = 0,
+
+    @field:ColumnInfo(name = "followers")
+    var followers: Int? = 0,
+
+    @field:ColumnInfo(name = "following")
+    var following: Int? = 0,
 )

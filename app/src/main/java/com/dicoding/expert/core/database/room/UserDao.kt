@@ -1,8 +1,8 @@
 package com.dicoding.expert.core.database.room
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.dicoding.expert.core.database.entity.UserEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDao {
@@ -10,7 +10,7 @@ interface UserDao {
     suspend fun insert(vararg user: UserEntity)
 
     @Query("SELECT * FROM user_table")
-    fun getAll(): LiveData<List<UserEntity>>
+    fun getAll(): Flow<List<UserEntity>>
 
     @Query("SELECT EXISTS(SELECT * FROM user_table WHERE id = :id)")
     suspend fun hasAdded(id: Int): Boolean

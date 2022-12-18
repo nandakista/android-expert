@@ -10,11 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.expert.R
-import com.dicoding.expert.data.models.User
 import com.dicoding.expert.databinding.ItemUserBinding
+import com.dicoding.expert.domain.entities.User
 import com.dicoding.expert.ui.pages.detail.DetailUserActivity
 
-class UsersAdapter() : ListAdapter<User, UsersAdapter.ListViewHolder>(DIFF_CALLBACK) {
+class UsersAdapter : ListAdapter<User, UsersAdapter.ListViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersAdapter.ListViewHolder {
         val binding = ItemUserBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
@@ -62,7 +62,7 @@ class UsersAdapter() : ListAdapter<User, UsersAdapter.ListViewHolder>(DIFF_CALLB
             }
 
             override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
-                return oldItem.userId == newItem.userId
+                return oldItem.id == newItem.id
             }
         }
     }

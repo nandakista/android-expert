@@ -1,4 +1,4 @@
-package com.dicoding.expert.core
+package com.dicoding.expert.core.utils
 
 import com.dicoding.expert.BuildConfig
 
@@ -7,8 +7,7 @@ object AppConst {
 
     const val DB_NAME = "user_github.db"
     const val DB_VERSION = 1
+    const val appVer = "Ⓒ Gitagram - Version ${BuildConfig.VERSION_NAME}"
 
-    // Error Message
     const val userNotFound = "User not found..."
-    const val appVer = "Ⓒ Gitfind - Version ${BuildConfig.VERSION_NAME}"
 }
