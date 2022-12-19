@@ -7,22 +7,17 @@ import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.expert.MyApplication
-import com.dicoding.expert.core.utils.ViewModelFactory
 import com.dicoding.expert.databinding.ActivityFavoriteBinding
 import com.dicoding.expert.ui.adapters.UsersAdapter
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FavoriteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFavoriteBinding
 
-    @Inject
-    lateinit var factory: ViewModelFactory
-
-    private val viewModel: FavoriteViewModel by viewModels { factory }
+    private val viewModel: FavoriteViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityFavoriteBinding.inflate(layoutInflater)
         setContentView(binding.root)

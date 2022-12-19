@@ -2,11 +2,13 @@ package com.dicoding.expert.ui.pages.home
 
 import androidx.lifecycle.*
 import com.dicoding.expert.domain.usecases.UserUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
+@HiltViewModel
 class   HomeViewModel @Inject constructor(userUseCase: UserUseCase) : ViewModel() {
     val getAllUser by lazy {
         userUseCase.getAllUser().asLiveData()

@@ -6,8 +6,11 @@ import com.dicoding.expert.di.core.modules.NetworkModule
 import com.dicoding.expert.domain.repositories.IUserRepository
 import dagger.Binds
 import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
 @Module(includes = [NetworkModule::class, DatabaseModule::class])
+@InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {
 
     @Binds

@@ -15,30 +15,25 @@ import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.expert.MyApplication
 import com.dicoding.expert.R
 import com.dicoding.expert.core.utils.AppConst
 import com.dicoding.expert.core.utils.Tools
-import com.dicoding.expert.core.utils.ViewModelFactory
 import com.dicoding.expert.data.sources.Resource
 import com.dicoding.expert.databinding.ActivityHomeBinding
 import com.dicoding.expert.ui.adapters.UsersAdapter
 import com.dicoding.expert.ui.pages.favorite.FavoriteActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.lang.StringBuilder
-import javax.inject.Inject
 
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     var querySearch: String? = null
 
-    @Inject
-    lateinit var factory: ViewModelFactory
-
-    private val viewModel: HomeViewModel by viewModels { factory }
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)

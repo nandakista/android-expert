@@ -8,27 +8,23 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.dicoding.expert.MyApplication
 import com.dicoding.expert.R
 import com.dicoding.expert.core.utils.Tools
-import com.dicoding.expert.core.utils.ViewModelFactory
 import com.dicoding.expert.core.utils.parcelable
 import com.dicoding.expert.data.sources.Resource
 import com.dicoding.expert.databinding.ActivityDetailUserBinding
 import com.dicoding.expert.domain.entities.User
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityDetailUserBinding
 
-    @Inject
-    lateinit var factory: ViewModelFactory
-
-    private val viewModel: DetailUserViewModel by viewModels { factory }
+    private val viewModel: DetailUserViewModel by viewModels()
     private lateinit var user: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityDetailUserBinding.inflate(layoutInflater)
         setContentView(binding.root)

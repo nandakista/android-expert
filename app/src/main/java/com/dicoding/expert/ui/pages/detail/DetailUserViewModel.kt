@@ -4,8 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.dicoding.expert.domain.entities.User
 import com.dicoding.expert.domain.usecases.UserUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+@HiltViewModel
 class DetailUserViewModel @Inject constructor(userUseCase: UserUseCase) : ViewModel() {
     private var useCase: UserUseCase = userUseCase
 
