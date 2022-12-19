@@ -5,8 +5,9 @@ import com.dicoding.expert.domain.usecases.UserUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
+import javax.inject.Inject
 
-class HomeViewModel(private val userUseCase: UserUseCase) : ViewModel() {
+class   HomeViewModel @Inject constructor(userUseCase: UserUseCase) : ViewModel() {
     val getAllUser by lazy {
         userUseCase.getAllUser().asLiveData()
     }

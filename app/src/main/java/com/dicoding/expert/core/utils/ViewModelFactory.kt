@@ -3,30 +3,19 @@ package com.dicoding.expert.core.utils
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.expert.di.app.AppScope
-import com.dicoding.expert.domain.usecases.UserUseCase
-import com.dicoding.expert.ui.pages.detail.DetailUserViewModel
-import com.dicoding.expert.ui.pages.favorite.FavoriteViewModel
-import com.dicoding.expert.ui.pages.home.HomeViewModel
-import kotlinx.coroutines.FlowPreview
 import javax.inject.Inject
+import javax.inject.Provider
 
-@OptIn(FlowPreview::class)
 @AppScope
-class ViewModelFactory @Inject constructor(private val userUseCase: UserUseCase) :
+class ViewModelFactory @Inject constructor(
+    private val creators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>
+) :
     ViewModelProvider.NewInstanceFactory() {
-
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T =
-        when {
-            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
-                HomeViewModel(userUseCase) as T
-            }
-            modelClass.isAssignableFrom(FavoriteViewModel::class.java) -> {
-                FavoriteViewModel(userUseCase) as T
-            }
-            modelClass.isAssignableFrom(DetailUserViewModel::class.java) -> {
-                DetailUserViewModel(userUseCase) as T
-            }
-            else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
-        }
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        val creator = creators[modelClass] ?: creators.entries.firstOrNull {
+            modelClass.isAssignableFrom(it.key)
+        }?.value ?: throw IllegalArgumentException("unknown model class $modelClass")
+        return creator.get() as T
+    }
 }
