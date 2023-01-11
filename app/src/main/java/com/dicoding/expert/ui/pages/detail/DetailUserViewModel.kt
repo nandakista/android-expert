@@ -2,8 +2,8 @@ package com.dicoding.expert.ui.pages.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.dicoding.expert.core.domain.model.User
-import com.dicoding.expert.core.domain.usecase.UserUseCase
+import com.dicoding.core.domain.model.User
+import com.dicoding.core.domain.usecase.UserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

@@ -7,8 +7,8 @@ import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dicoding.expert.ui.adapter.UsersAdapter
 import com.dicoding.expert.databinding.ActivityFavoriteBinding
-import com.dicoding.expert.core.ui.UsersAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

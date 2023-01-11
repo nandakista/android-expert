@@ -9,11 +9,11 @@ import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.expert.R
-import com.dicoding.expert.core.utils.Tools
-import com.dicoding.expert.core.utils.parcelable
-import com.dicoding.expert.core.data.Resource
+import com.dicoding.core.data.Resource
+import com.dicoding.core.domain.model.User
+import com.dicoding.core.utils.Tools
+import com.dicoding.core.utils.parcelable
 import com.dicoding.expert.databinding.ActivityDetailUserBinding
-import com.dicoding.expert.core.domain.model.User
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

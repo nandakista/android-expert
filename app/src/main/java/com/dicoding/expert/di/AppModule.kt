@@ -1,7 +1,7 @@
 package com.dicoding.expert.di
 
-import com.dicoding.expert.core.domain.usecase.UserInteractor
-import com.dicoding.expert.core.domain.usecase.UserUseCase
+import com.dicoding.core.domain.usecase.UserInteractor
+import com.dicoding.core.domain.usecase.UserUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

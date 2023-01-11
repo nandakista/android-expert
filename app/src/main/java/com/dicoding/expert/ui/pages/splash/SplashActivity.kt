@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import com.dicoding.core.utils.AppConst
 import com.dicoding.expert.BuildConfig
-import com.dicoding.expert.core.utils.AppConst
 import com.dicoding.expert.databinding.ActivitySplashBinding
 import com.dicoding.expert.ui.pages.home.HomeActivity
 
