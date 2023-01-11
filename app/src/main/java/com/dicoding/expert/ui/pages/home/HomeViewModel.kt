@@ -1,7 +1,7 @@
 package com.dicoding.expert.ui.pages.home
 
 import androidx.lifecycle.*
-import com.dicoding.expert.domain.usecases.UserUseCase
+import com.dicoding.expert.core.domain.usecase.UserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview

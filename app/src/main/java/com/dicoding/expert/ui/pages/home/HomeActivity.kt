@@ -18,9 +18,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.expert.R
 import com.dicoding.expert.core.utils.AppConst
 import com.dicoding.expert.core.utils.Tools
-import com.dicoding.expert.data.sources.Resource
+import com.dicoding.expert.core.data.Resource
 import com.dicoding.expert.databinding.ActivityHomeBinding
-import com.dicoding.expert.ui.adapters.UsersAdapter
+import com.dicoding.expert.core.ui.UsersAdapter
 import com.dicoding.expert.ui.pages.favorite.FavoriteActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

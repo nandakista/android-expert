@@ -11,11 +11,10 @@ import com.bumptech.glide.request.RequestOptions
 import com.dicoding.expert.R
 import com.dicoding.expert.core.utils.Tools
 import com.dicoding.expert.core.utils.parcelable
-import com.dicoding.expert.data.sources.Resource
+import com.dicoding.expert.core.data.Resource
 import com.dicoding.expert.databinding.ActivityDetailUserBinding
-import com.dicoding.expert.domain.entities.User
+import com.dicoding.expert.core.domain.model.User
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class DetailUserActivity : AppCompatActivity(), View.OnClickListener {

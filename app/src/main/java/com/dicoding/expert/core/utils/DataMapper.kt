@@ -1,8 +1,8 @@
 package com.dicoding.expert.core.utils
 
-import com.dicoding.expert.core.database.entity.UserEntity
+import com.dicoding.expert.core.data.sources.local.entity.UserEntity
 import com.dicoding.expert.data.models.UserResponse
-import com.dicoding.expert.domain.entities.User
+import com.dicoding.expert.core.domain.model.User
 
 object DataMapper {
     fun mapUserResponseToUser(input: UserResponse): User {

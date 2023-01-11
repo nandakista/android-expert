@@ -36,8 +36,11 @@
     </option>
   </component>
   <component name="EntryPointsManager">
-    <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="dagger.hilt.android.HiltAndroidApp" />
+    <list size="4">
+      <item index="0" class="java.lang.String" itemvalue="dagger.Binds" />
+      <item index="1" class="java.lang.String" itemvalue="dagger.hilt.InstallIn" />
+      <item index="2" class="java.lang.String" itemvalue="dagger.hilt.android.HiltAndroidApp" />
+      <item index="3" class="java.lang.String" itemvalue="dagger.hilt.android.scopes.ViewModelScoped" />
     </list>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_13" default="true" project-jdk-name="13" project-jdk-type="JavaSDK">
