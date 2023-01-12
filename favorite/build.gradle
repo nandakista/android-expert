@@ -1,8 +1,7 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.dynamic-feature'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-    id 'kotlin-parcelize'
     id 'dagger.hilt.android.plugin'
 }
 
@@ -16,11 +15,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.dicoding.expert"
         minSdk 23
-        targetSdk 33
-        versionCode 1
-        versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -40,9 +35,9 @@ android {
                 '-Xopt-in=kotlin.RequiresOptIn',
         ]
     }
-    dynamicFeatures = [':favorite']
 }
 
 dependencies {
+    implementation project(":app")
     implementation project(":core")
 }

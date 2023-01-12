@@ -1,4 +1,4 @@
-package com.dicoding.expert.ui.pages.favorite
+package com.dicoding.expert.favorite
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,8 +7,8 @@ import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dicoding.expert.favorite.databinding.ActivityFavoriteBinding
 import com.dicoding.expert.ui.adapter.UsersAdapter
-import com.dicoding.expert.databinding.ActivityFavoriteBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,7 +27,7 @@ class FavoriteActivity : AppCompatActivity() {
         val adapter = UsersAdapter()
         binding.rvFavUsers.adapter = adapter
         viewModel.getFavUser.observe(this) {
-            Log.d("ACtivity", "Fav = ${it.map { e ->
+            Log.d("Activity", "Fav = ${it.map { e ->
                 e.username
             }}")
             if (it.isNotEmpty()) {

@@ -1,4 +1,4 @@
-package com.dicoding.expert.ui.pages.favorite
+package com.dicoding.expert.favorite
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData

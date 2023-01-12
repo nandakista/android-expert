@@ -4,6 +4,7 @@ package com.dicoding.expert.ui.pages.home
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -21,7 +22,6 @@ import com.dicoding.expert.ui.adapter.UsersAdapter
 import com.dicoding.core.utils.AppConst
 import com.dicoding.core.utils.Tools
 import com.dicoding.expert.databinding.ActivityHomeBinding
-import com.dicoding.expert.ui.pages.favorite.FavoriteActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.lang.StringBuilder
@@ -181,7 +181,8 @@ class HomeActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.fav_icon -> {
-                startActivity(Intent(this@HomeActivity, FavoriteActivity::class.java))
+                val uri = Uri.parse("expert://favorite")
+                startActivity(Intent(Intent.ACTION_VIEW, uri))
                 true
             }
             else -> true

@@ -33,6 +33,7 @@
         <entry key="app/src/main/res/menu/detail_option_menu.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/menu/home_option_menu.xml" value="0.28229166666666666" />
         <entry key="core/src/main/res/layout/item_user.xml" value="0.21145833333333333" />
+        <entry key="favorite/src/main/res/layout/activity_favorite.xml" value="0.215625" />
       </map>
     </option>
   </component>
