@@ -9,8 +9,6 @@ interface IUserRepository {
 
     fun getDetailUser(username: String): Flow<Resource<User>>
 
-    fun searchUser(username: String): Flow<Resource<List<User>>>
-
     fun getFavoriteUser(): Flow<List<User>>
 
     fun setFavoriteUser(user: User): Flow<String>

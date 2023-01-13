@@ -16,46 +16,30 @@ class UserRepository @Inject constructor(
     private val localDataSource: LocalDataSource,
 ) : IUserRepository {
 
-    override fun getAllUser(): Flow<com.dicoding.core.data.Resource<List<User>>> {
+    override fun getAllUser(): Flow<Resource<List<User>>> {
         return flow {
-            emit(com.dicoding.core.data.Resource.Loading())
+            emit(Resource.Loading())
             when (val it = remoteDataSource.getAllUser().first()) {
                 is ApiResponse.Success -> {
                     val userList = DataMapper.userResponseToUser(it.data)
-                    emit(com.dicoding.core.data.Resource.Success(userList))
+                    emit(Resource.Success(userList))
                 }
                 is ApiResponse.Error -> {
-                    emit(com.dicoding.core.data.Resource.Error(it.errMsg))
+                    emit(Resource.Error(it.errMsg))
                 }
             }
         }
     }
 
-
-    override fun getDetailUser(username: String): Flow<com.dicoding.core.data.Resource<User>> {
+    override fun getDetailUser(username: String): Flow<Resource<User>> {
         return flow {
-            emit(com.dicoding.core.data.Resource.Loading())
+            emit(Resource.Loading())
             when (val it = remoteDataSource.getDetailUser(username).first()) {
                 is ApiResponse.Success -> {
-                    emit(com.dicoding.core.data.Resource.Success(DataMapper.mapUserResponseToUser(it.data)))
+                    emit(Resource.Success(DataMapper.mapUserResponseToUser(it.data)))
                 }
                 is ApiResponse.Error -> {
-                    emit(com.dicoding.core.data.Resource.Error(it.errMsg))
-                }
-            }
-        }
-    }
-
-    override fun searchUser(username: String): Flow<com.dicoding.core.data.Resource<List<User>>> {
-        return flow {
-            emit(com.dicoding.core.data.Resource.Loading())
-            when (val it = remoteDataSource.searchUser(username).first()) {
-                is ApiResponse.Success -> {
-                    val userList = DataMapper.userResponseToUser(it.data)
-                    emit(com.dicoding.core.data.Resource.Success(userList))
-                }
-                is ApiResponse.Error -> {
-                    emit(com.dicoding.core.data.Resource.Error(it.errMsg))
+                    emit(Resource.Error(it.errMsg))
                 }
             }
         }

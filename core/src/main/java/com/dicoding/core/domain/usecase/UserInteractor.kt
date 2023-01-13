@@ -15,10 +15,6 @@ class UserInteractor @Inject constructor(private val userRepository: IUserReposi
         return userRepository.getDetailUser(username)
     }
 
-    override fun searchUser(username: String): Flow<Resource<List<User>>> {
-        return userRepository.searchUser(username)
-    }
-
     override fun getFavoriteUser(): Flow<List<User>> {
         return userRepository.getFavoriteUser()
     }

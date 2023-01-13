@@ -51,7 +51,6 @@ class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun getDetailUser() {
-        Log.d("Detail Activity", "User ${user.username}")
         viewModel.getDetailUser(user.username.toString()).observe(this) {
             when (it) {
                 is Resource.Loading -> {
