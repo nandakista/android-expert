@@ -16,7 +16,7 @@ android {
         versionCode 1
         versionName "1.0.0"
         buildConfigField "String", "BASE_URL", '"https://api.github.com"'
-        buildConfigField "String", "ACCESS_TOKEN", '"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"'
+        buildConfigField "String", "ACCESS_TOKEN", '"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"'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -51,7 +51,7 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.4.3'
 
     // Coroutine
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
     implementation "androidx.room:room-ktx:2.4.3"
 }
