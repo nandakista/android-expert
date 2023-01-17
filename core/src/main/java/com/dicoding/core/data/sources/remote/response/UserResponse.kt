@@ -12,8 +12,13 @@ data class UserResponse(
     @SerializedName("login")
     var username: String,
 
+    @SerializedName("name")
     var name: String?,
+
+    @SerializedName("location")
     var location: String?,
+
+    @SerializedName("company")
     var company: String?,
 
     @SerializedName("type")
@@ -23,17 +28,20 @@ data class UserResponse(
     var gitUrl: String?,
 
     @SerializedName("bio")
-    var biodata: String? = null,
+    var biodata: String?,
 
     @SerializedName("avatar_url")
     var avatarUrl: String?,
 
     @SerializedName("url")
-    var repoUrl: String? = null,
+    var repoUrl: String?,
 
     @SerializedName("public_repos")
     var repository: Int? = 0,
 
+    @SerializedName("followers")
     var followers: Int? = 0,
+
+    @SerializedName("following")
     var following: Int? = 0,
 ) : Parcelable
