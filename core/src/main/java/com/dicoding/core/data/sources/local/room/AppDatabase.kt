@@ -8,7 +8,6 @@ import com.dicoding.core.utils.AppConst
 @Database(
     entities = [UserEntity::class],
     version = AppConst.DB_VERSION,
-    exportSchema = false
 )
 abstract class AppDatabase: RoomDatabase() {
     abstract fun userDao(): UserDao
