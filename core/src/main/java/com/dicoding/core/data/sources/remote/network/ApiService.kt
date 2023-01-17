@@ -1,7 +1,6 @@
 package com.dicoding.core.data.sources.remote.network
 
 import com.dicoding.core.BuildConfig
-import com.dicoding.core.data.sources.remote.response.SearchResponse
 import com.dicoding.core.data.sources.remote.response.UserResponse
 import retrofit2.http.*
 
