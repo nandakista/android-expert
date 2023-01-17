@@ -13,9 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Submission">
         <activity
-            android:name=".ui.pages.favorite.FavoriteActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.pages.detail.DetailUserActivity"
             android:exported="false" />
         <activity
