@@ -16,7 +16,13 @@ android {
         versionCode 1
         versionName "1.0.0"
         buildConfigField "String", "BASE_URL", '"https://api.github.com"'
-        buildConfigField "String", "ACCESS_TOKEN", '"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"'
+        buildConfigField "String", "ACCESS_TOKEN", '"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"'
+
+        buildConfigField "String", "HOSTNAME", '"api.github.com"'
+        buildConfigField "String", "CERT1", '"sha256/1UPHAdcUbUoOcd5rDTD/0oMSnngCU6YzXzpByO4CCp4="'
+        buildConfigField "String", "CERT2", '"sha256/RQeZkB42znUfsDIIFWIRiYEcKl7nHwNFwWCrnMMJbVc="'
+        buildConfigField "String", "CERT3", '"sha256/uyPYgclc5Jt69vKu92vci6etcBDY8UNTyrHQZJpVoZY="'
+        buildConfigField "String", "CERT4", '"sha256/e0IRz5Tio3GA1Xs4fUVWmH1xHDiH2dMbVtCBSkOIdqM="'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"

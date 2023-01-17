@@ -20,12 +20,12 @@ class NetworkModule {
     @Provides
     fun provideOkHttpClient(): OkHttpClient {
         val client = OkHttpClient.Builder()
-        val hostname = "api.github.com"
+        val hostname = BuildConfig.HOSTNAME
         val certificatePinner = CertificatePinner.Builder()
-            .add(hostname, "sha256/1UPHAdcUbUoOcd5rDTD/0oMSnngCU6YzXzpByO4CCp4=")
-            .add(hostname, "sha256/RQeZkB42znUfsDIIFWIRiYEcKl7nHwNFwWCrnMMJbVc=")
-            .add(hostname, "sha256/uyPYgclc5Jt69vKu92vci6etcBDY8UNTyrHQZJpVoZY=")
-            .add(hostname, "sha256/e0IRz5Tio3GA1Xs4fUVWmH1xHDiH2dMbVtCBSkOIdqM=")
+            .add(hostname, BuildConfig.CERT1)
+            .add(hostname, BuildConfig.CERT2)
+            .add(hostname, BuildConfig.CERT3)
+            .add(hostname, BuildConfig.CERT4)
             .build()
 
         if (BuildConfig.DEBUG) {
