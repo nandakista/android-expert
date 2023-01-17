@@ -2,7 +2,6 @@ package com.dicoding.expert.ui.pages.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
@@ -115,13 +114,15 @@ class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
             binding.menuRemoveFav -> {
-                viewModel.deletedFavUser(user.id!!).observe(this) {
-                    binding.menuRemoveFav.visibility = View.GONE
-                    binding.menuAddFav.visibility = View.VISIBLE
-                    Tools.toast(
-                        this@DetailUserActivity,
-                        "${user.username} has been remove from Favorite."
-                    )
+                user.id?.let {
+                    viewModel.deletedFavUser(it).observe(this) {
+                        binding.menuRemoveFav.visibility = View.GONE
+                        binding.menuAddFav.visibility = View.VISIBLE
+                        Tools.toast(
+                            this@DetailUserActivity,
+                            "${user.username} has been remove from Favorite."
+                        )
+                    }
                 }
             }
         }

@@ -4,17 +4,6 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
-data class SearchResponse(
-    @SerializedName("total_count")
-    var totalCount: Int,
-
-    @SerializedName("incomplete_results")
-    var incompleteResult: Boolean,
-
-    @SerializedName("items")
-    var data: List<UserResponse>,
-)
-
 @Parcelize
 data class UserResponse(
     @SerializedName("id")

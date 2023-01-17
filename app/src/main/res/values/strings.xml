@@ -22,6 +22,14 @@
     <string name="search_hint">Search User…</string>
     <string name="search_developer">Search Developer</string>
 
+    <string name="img_not_found_desc">Image that show there is no developer found</string>
+    <string name="img_initial_search_state_desc">Image that inform you to find developer</string>
+    <string name="img_back_button_desc">Back button to List Developer</string>
+    <string name="img_add_favorite_desc">Button add developer to favorite</string>
+    <string name="img_remove_favorite_desc">Button remove developer from favorite</string>
+    <string name="img_app_logo_desc">Image that show application logo</string>
+    <string name="img_developer_photo_profile_desc">Image that show Developer photo profile</string>
+
     <string name="menu_1">Menu 1</string>
     <string name="menu_2">Menu 2</string>
     <string name="title_favorite">Favorite</string>

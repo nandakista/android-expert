@@ -24,7 +24,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_github"
-            tools:ignore="ContentDescription" />
+            android:contentDescription="@string/img_app_logo_desc"/>
 
         <TextView
             android:id="@+id/tv_splash_app_name"

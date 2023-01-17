@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_baseline_arrow_back_24"
-            tools:ignore="ContentDescription" />
+            android:contentDescription="@string/img_back_button_desc"  />
 
         <TextView
             android:id="@+id/tv_title"
@@ -41,7 +41,7 @@
             android:layout_marginEnd="12dp"
             android:layout_alignParentEnd="true"
             android:src="@drawable/ic_favorite_border_24"
-            tools:ignore="ContentDescription" />
+            android:contentDescription="@string/img_add_favorite_desc" />
 
         <ImageView
             android:id="@+id/menu_remove_fav"
@@ -51,7 +51,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="12dp"
             android:src="@drawable/ic_favorite_24"
-            tools:ignore="ContentDescription" />
+            android:contentDescription="@string/img_remove_favorite_desc" />
     </RelativeLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -212,7 +212,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
+            android:contentDescription="@string/img_not_found_desc" />
 
         <TextView
             style="@style/Headline3"
