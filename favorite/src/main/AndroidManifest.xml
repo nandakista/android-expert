@@ -13,7 +13,7 @@
         <dist:fusing dist:include="true" />
     </dist:module>
 
-    <application>
+    <application android:supportsRtl="true">
         <activity android:name=".FavoriteActivity"
             android:exported="true">
             <intent-filter>

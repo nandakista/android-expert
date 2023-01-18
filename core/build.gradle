@@ -16,7 +16,7 @@ android {
         versionCode 1
         versionName "1.0.0"
         buildConfigField "String", "BASE_URL", '"https://api.github.com"'
-        buildConfigField "String", "ACCESS_TOKEN", '"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"'
+        buildConfigField "String", "ACCESS_TOKEN", '"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"'
 
         buildConfigField "String", "HOSTNAME", '"api.github.com"'
         buildConfigField "String", "CERT1", '"sha256/1UPHAdcUbUoOcd5rDTD/0oMSnngCU6YzXzpByO4CCp4="'
@@ -38,10 +38,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
         freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]

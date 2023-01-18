@@ -75,9 +75,9 @@
             android:layout_height="wrap_content"
             style="@style/Headline3"
             android:text="@string/_00"
-            app:layout_constraintEnd_toStartOf="@+id/tv_folllowers"
+            app:layout_constraintEnd_toStartOf="@+id/tv_followers"
             app:layout_constraintStart_toEndOf="@+id/user_avatar"
-            app:layout_constraintTop_toTopOf="@+id/tv_folllowers" />
+            app:layout_constraintTop_toTopOf="@+id/tv_followers" />
 
         <TextView
             android:id="@+id/textView8"
@@ -91,7 +91,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_repo" />
 
         <TextView
-            android:id="@+id/tv_folllowers"
+            android:id="@+id/tv_followers"
             style="@style/Headline3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -109,9 +109,9 @@
             android:text="@string/followers"
             style="@style/Subtitle2"
             android:layout_marginTop="-6dp"
-            app:layout_constraintEnd_toEndOf="@+id/tv_folllowers"
-            app:layout_constraintStart_toStartOf="@+id/tv_folllowers"
-            app:layout_constraintTop_toBottomOf="@+id/tv_folllowers" />
+            app:layout_constraintEnd_toEndOf="@+id/tv_followers"
+            app:layout_constraintStart_toStartOf="@+id/tv_followers"
+            app:layout_constraintTop_toBottomOf="@+id/tv_followers" />
 
         <TextView
             android:id="@+id/tv_following"
@@ -120,8 +120,8 @@
             style="@style/Headline3"
             android:text="@string/_00"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_folllowers"
-            app:layout_constraintTop_toTopOf="@+id/tv_folllowers" />
+            app:layout_constraintStart_toEndOf="@+id/tv_followers"
+            app:layout_constraintTop_toTopOf="@+id/tv_followers" />
 
         <TextView
             android:id="@+id/textView14"

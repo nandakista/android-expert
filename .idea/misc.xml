@@ -4,7 +4,6 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_baseline_favorite_24.xml" value="0.165" />
-        <entry key="app/src/main/res/drawable-v24/ic_baseline_favorite_border_24.xml" value="0.162" />
         <entry key="app/src/main/res/drawable-v24/ic_baseline_search_24.xml" value="0.165" />
         <entry key="app/src/main/res/drawable-v24/ic_broken_image.xml" value="0.165" />
         <entry key="app/src/main/res/drawable-v24/ic_broken_image_black.xml" value="0.165" />
@@ -27,22 +26,18 @@
         <entry key="app/src/main/res/layout/activity_favorite.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.21927083333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21927083333333333" />
-        <entry key="app/src/main/res/layout/activity_search.xml" value="0.23854166666666668" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/item_user.xml" value="0.25" />
         <entry key="app/src/main/res/menu/detail_option_menu.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/menu/home_option_menu.xml" value="0.28229166666666666" />
-        <entry key="core/src/main/res/layout/item_user.xml" value="0.21145833333333333" />
-        <entry key="favorite/src/main/res/layout/activity_favorite.xml" value="0.215625" />
+        <entry key="favorite/src/main/res/layout/activity_favorite.xml" value="0.15052083333333333" />
       </map>
     </option>
   </component>
   <component name="EntryPointsManager">
-    <list size="4">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="dagger.Binds" />
-      <item index="1" class="java.lang.String" itemvalue="dagger.hilt.InstallIn" />
-      <item index="2" class="java.lang.String" itemvalue="dagger.hilt.android.HiltAndroidApp" />
-      <item index="3" class="java.lang.String" itemvalue="dagger.hilt.android.scopes.ViewModelScoped" />
+      <item index="1" class="java.lang.String" itemvalue="dagger.Module" />
     </list>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_13" default="true" project-jdk-name="13" project-jdk-type="JavaSDK">

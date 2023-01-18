@@ -7,6 +7,8 @@
     tools:context=".FavoriteActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/appbar_fav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         style="@style/AppBarStyle"
         android:theme="@style/AppBarTheme"
         app:title="@string/list_developer"

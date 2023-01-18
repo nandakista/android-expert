@@ -7,7 +7,6 @@ import com.dicoding.core.domain.usecase.UserUseCase
 import com.dicoding.expert.ui.pages.DataDummy
 import com.dicoding.expert.ui.pages.MainDispatcherRule
 import com.dicoding.expert.ui.pages.getOrAwaitValue
-import com.dicoding.expert.ui.pages.home.HomeViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import org.junit.Assert

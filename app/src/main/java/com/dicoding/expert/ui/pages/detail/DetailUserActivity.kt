@@ -84,7 +84,7 @@ class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
         binding.tvFullname.text = data.name ?: "Unnamed Account"
         binding.tvBio.text = data.biodata ?: "--"
         binding.tvRepo.text = data.repository.toString()
-        binding.tvFolllowers.text = data.followers.toString()
+        binding.tvFollowers.text = data.followers.toString()
         binding.tvFollowing.text = data.following.toString()
         binding.tvCompany.text = data.company ?: "--"
         binding.tvLocation.text = data.location ?: "--"
