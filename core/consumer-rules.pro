@@ -53,9 +53,6 @@
     @retrofit2.http.* <methods>;
 }
 
-# Ignore annotation used for build tooling.
--dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
-
 # Ignore JSR 305 annotations for embedding nullability information.
 -dontwarn javax.annotation.**
 
@@ -84,14 +81,6 @@
 # is used.
 -keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
 
-##---------------Begin: proguard configuration for OkHttp Certificate Pinning ----------
--dontwarn org.bouncycastle.jsse.BCSSLSocket
--dontwarn org.bouncycastle.jsse.BCSSLParameters
--dontwarn org.bouncycastle.jsse.provider.BouncyCastleJsseProvider
--dontwarn org.conscrypt.*
--dontwarn org.openjsse.javax.net.ssl.SSLParameters
--dontwarn org.openjsse.javax.net.ssl.SSLSocket
--dontwarn org.openjsse.net.ssl.OpenJSSE
 
 ##---------------Begin: proguard configuration for Glide ----------
 -keep public class * implements com.bumptech.glide.module.GlideModule

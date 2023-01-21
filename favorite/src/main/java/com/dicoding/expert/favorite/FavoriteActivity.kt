@@ -39,7 +39,6 @@ class FavoriteActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.appbarFav)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        actionBar?.setDisplayHomeAsUpEnabled(true)
         val adapter = UsersAdapter()
         binding.rvFavUsers.adapter = adapter
         viewModel.getFavUser.observe(this) {

@@ -18,9 +18,6 @@
     <string name="company">Company</string>
     <string name="location">Location</string>
     <string name="error">Oops!\nSomething went wrong!</string>
-    <string name="favorite_list">Favorite List</string>
-    <string name="search_hint">Search User…</string>
-    <string name="search_developer">Search Developer</string>
 
     <string name="img_not_found_desc">Image that show there is no developer found</string>
     <string name="img_initial_search_state_desc">Image that inform you to find developer</string>
@@ -31,6 +28,5 @@
     <string name="img_developer_photo_profile_desc">Image that show Developer photo profile</string>
 
     <string name="menu_1">Menu 1</string>
-    <string name="menu_2">Menu 2</string>
     <string name="title_favorite">Favorite</string>
 </resources>

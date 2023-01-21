@@ -1,6 +1,5 @@
 package com.dicoding.expert.ui.adapter
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -23,7 +22,6 @@ class UsersAdapter : ListAdapter<User, UsersAdapter.ListViewHolder>(DIFF_CALLBAC
 
     inner class ListViewHolder(private val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        @SuppressLint("NotifyDataSetChanged")
         fun bind(data: User) {
             binding.tvUsername.text = data.username
             val gitUrls = data.gitUrl
